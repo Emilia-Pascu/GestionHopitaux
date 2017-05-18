@@ -1,0 +1,72 @@
+<html>
+<head>
+<script language="javascript">
+ function envoyerFormulaire(leForm){
+	leForm.submit();
+ }
+ function divVisible(leDiv){
+   document.getElementById(leDiv).style.visibility='visible';
+ }
+ function divInvisible(leDiv){
+   document.getElementById(leDiv).style.visibility='hidden';
+ }
+</script>
+</head>
+<body>
+<input type="button" value="Liste des hospitalisations" onClick="envoyerFormulaire(formListe);">
+<form name="formListe" action="gestionHospitalisations.php" method="post">
+   <input type="hidden" name="monAction" value="obtenirListe">
+</form>
+
+<input type="button" value="Liste par établissement" onClick="divVisible('divListeEtab');">
+<div id="divListeEtab" name="divListeEtab" style="visibility:hidden;position:absolute;top:20%;left:10%;">
+<form name="formListeEtab" action="gestionHospitalisations.php" method="post">
+   Code établissement : <input type="text" id="codeE" name="codeE">
+   <input type="hidden" name="monAction" value="obtenirListeEtab">
+   <input type="button" value="Envoyer" onClick="envoyerFormulaire(formListeEtab);">
+   <img src="images/fermer.png" onClick="divInvisible('divListeEtab')">
+</form>
+</div><br/><br/>
+
+<input type="button" value="Ajouter hospitalisation" onClick="divVisible('divAjouterHosp');">
+<div id="divAjouterHosp" name="divAjouterHosp" style="visibility:hidden;position:absolute;top:20%;left:10%;">
+<form name="formAjouterHosp" action="gestionHospitalisations.php" method="post">
+   <div>Code établissement : <input type="text" id="codeEtab" name="codeEtab"></div>
+   <div>No dossier patient : <input type="text" id="noDossPat" name="noDossPat"></div>
+   <div>Date admission : <input type="text" id="dateAdmiss" name="dateAdmiss"></div>
+   <div>Date sortie : <input type="text" id="dateSort" name="dateSort"></div>
+   <div>Spécialité : <input type="text" id="specialite" name="specialite"></div>
+   <div>Type chambre : <input type="text" id="typeCh" name="typeCh"></div>
+   <input type="hidden" name="monAction" value="ajouterEnregistrem">
+   <input type="button" value="Enregistrer" onClick="envoyerFormulaire(formAjouterHosp);">
+   <img src="images/fermer.png" onClick="divInvisible('divAjouterHosp')">
+</form>
+</div><br/><br/>
+
+<input type="button" value="Supprimer dossier patient" onClick="divVisible('divSuppDoss');">
+<div id="divSuppDoss" name="divSuppDoss" style="visibility:hidden;position:absolute;top:20%;left:10%;">
+<form name="formSuppDoss" action="gestionHospitalisations.php" method="post">
+   <div>Code établissement : <input type="text" id="codeEt" name="codeEt"></div>
+   <div>No dossier patient : <input type="text" id="noDossP" name="noDossP"></div>
+   <div>Date admission : <input type="text" id="dateAdmi" name="dateAdmi"></div>
+   <input type="hidden" name="monAction" value="supprimerDoss">
+   <input type="button" value="Supprimer" onClick="envoyerFormulaire(formSuppDoss);">
+   <img src="images/fermer.png" onClick="divInvisible('divSuppDoss')">
+</form>
+</div><br/><br/>
+
+<input type="button" value="Modifier dossier patient" onClick="divVisible('divModDoss');">
+<div id="divModDoss" name="divModDoss" style="visibility:hidden;position:absolute;top:20%;left:10%;">
+<form name="formModDoss" action="gestionHospitalisations.php" method="post">
+   <div>Code établissement : <input type="text" id="codeEtb" name="codeEtb"></div>
+   <div>No dossier patient : <input type="text" id="noDossPt" name="noDossPt"></div>
+   <div>Date admission : <input type="text" id="dateAdmissn" name="dateAdmissn"></div>
+   <input type="hidden" name="monAction" value="modifierDoss">
+   <input type="hidden" name="code" value="obtenirFiche">
+   <input type="button" value="Obtenir fiche patient" onClick="envoyerFormulaire(formModDoss);">
+   <img src="images/fermer.png" onClick="divInvisible('divModDoss')">
+</form>
+</div><br/><br/>
+
+</body>
+</html>
